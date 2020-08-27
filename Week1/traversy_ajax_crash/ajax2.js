@@ -1,56 +1,38 @@
-'use strict';
+//
+const getInfo = () => {
+  let imgTag = document.createElement('img');
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://xkcd.now.sh/?comic=latest');
+  xhr.send();
+  xhr.onload = () => {
 
-{
-  function loadUser() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'user.json', true);
-
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        const user = JSON.parse(xhr.responseText);
-
-        let output = '';
-
-        output +=
-          `<ul>` +
-          `<li> ID: ${user.id}</li >` +
-          `<li>Name: ${user.name}</li>` +
-          `<li>Email: ${user.email}</li>` +
-          `</ul>`;
-
-        document.getElementById('user').innerHTML = output;
-      }
-    };
-
-    xhr.send();
+    if (this.status >= 400) {
+      console.error("Error")
+    } else {
+      const data = JSON.parse(xhr.responseText);
+      let body = document.querySelector('body');
+      let imgUrl = data.img;
+      imgTag.setAttribute("src", imgUrl)
+      body.appendChild(imgTag);
+    }
   }
-
-  function loadUsers() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'users.json', true);
-
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        const users = JSON.parse(xhr.responseText);
-
-        let output = '';
-
-        for (const user of users) {
-          output +=
-            `<ul>` +
-            `<li> ID: ${user.id}</li >` +
-            `<li>Name: ${user.name}</li>` +
-            `<li>Email: ${user.email}</li>` +
-            `</ul>`;
-        }
-
-        document.getElementById('users').innerHTML = output;
-      }
-    };
-
-    xhr.send();
-  }
-
-  document.getElementById('button1').addEventListener('click', loadUser);
-  document.getElementById('button2').addEventListener('click', loadUsers);
 }
+
+const getFriendAxios = () => {
+  let imgTag = document.createElement('img');
+
+  axios({
+    method: 'GET',
+    url: 'https://xkcd.now.sh/?comic=latest'
+  }).then(response => {
+    let body = document.querySelector('body');
+    let imgUrl = response.data.img;
+    imgTag.setAttribute("src", imgUrl)
+    body.appendChild(imgTag);
+  })
+
+
+    .catch(error => console.error(error))
+}
+// getFriendAxios()
+getInfo();

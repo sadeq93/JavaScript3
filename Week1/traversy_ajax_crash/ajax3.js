@@ -1,32 +1,43 @@
 'use strict';
 
-{
-  // Load Github Users
-  function loadUsers() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.github.com/users', true);
-
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        const users = JSON.parse(xhr.responseText);
-
-        let output = '';
-        for (const user of users) {
-          output +=
-            `<div class="user"> <img src="${user.avatar_url} width="70" height="70">` +
-            `<ul>` +
-            `<li>ID: ${user.id}</li>` +
-            `<li>Login: ${user.login}</li>` +
-            `</ul>` +
-            `</div>`;
-        }
-
-        document.getElementById('users').innerHTML = output;
-      }
-    };
-
-    xhr.send();
+const xhrButton = document.getElementById("XHR-button");
+const axiosButton = document.getElementById("Axios-button");
+const display = document.getElementById('display')
+const getDogImgXhr = () => {
+  const xhr = new XMLHttpRequest();
+  let img = document.createElement("img")
+  xhr.open("GET", "https://dog.ceo/api/breeds/image/random")
+  xhr.send()
+  xhr.onload = () => {
+    if (this.status >= 400) {
+      console.error("Error")
+    } else {
+      
+      let data = JSON.parse(xhr.responseText)
+      let li = document.createElement("li")
+      img.src = data.message
+      img.setAttribute('width', '300px')
+      li.appendChild(img)
+      display.appendChild(li)
+    }
   }
-
-  document.getElementById('button').addEventListener('click', loadUsers);
 }
+const getDogImgAxios = () => {
+  let img = document.createElement("img")
+  axios({
+    method: 'GET',
+    url: 'https://dog.ceo/api/breeds/image/random'
+  }).then(response => {
+    let li = document.createElement("li")
+    img.src = response.data.message
+    img.setAttribute('width','300px')
+    li.appendChild(img)
+    display.appendChild(li)
+    
+
+  }).catch(error => console.error(error))
+}
+
+xhrButton.addEventListener("click",getDogImgXhr)
+axiosButton.addEventListener("click",getDogImgAxios)
+
