@@ -20,6 +20,34 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <header id="headerContainer">
+      <h1>HYF Repositories</h1>
+      <select name="" id="select">
+        <option value="">Select Option</option>
+      </select>
+    </header>
+    <main id="main-container">
+      <section id="repoContainer">
+        <div class="repoName dataBox">
+          <h4>Repository :</h4>
+          <h6></h6>
+        </div>
+        <div class="repoDescription dataBox">
+          <h4>Description :</h4>
+          <h6></h6>
+        </div>
+        <div class="forks dataBox">
+          <h4>Forks :</h4>
+          <h6></h6>
+        </div>
+        <div class="repoUpdated dataBox">
+          <h4>Updated :</h4>
+          <h6></h6>
+        </div>
+      </section>
+      <section id="contributorsContainer"></section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

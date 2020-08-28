@@ -1,3 +1,135 @@
-/* 
-  Write here your CSS rules for HackYourRepo!
-*/
+/* --------------------------------- reset---------------------------------  */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/*--------------------------------- fonts --------------------------------- */
+h1 {
+  color: #fff;
+  font-size: 0.8em;
+  text-align: start;
+}
+h4 {
+  font-size: 0.9em;
+  min-width: 6rem;
+}
+
+h6 {
+  margin-left: 0.05rem;
+  font-size: 0.7em;
+}
+
+/*---------------------------------  base styles --------------------------------- */
+body {
+  color: #000;
+  background: rgb(42, 42, 42);
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+#headerContainer {
+  height: 50px;
+  display: flex;
+  background-color: #1f8b99;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+#headerContainer #select {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+#main-container {
+  margin: 0 auto;
+  margin-top: 0.3rem;
+}
+#repoContainer {
+  background: #fff;
+  height: 180px;
+}
+#contributorsContainer {
+  background: #fff;
+  height: 180px;
+  margin-top: 0.3rem;
+}
+.dataBox {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 10px;
+  text-align: start;
+}
+
+
+/* ---------------------------------mobile size--------------------------------- */
+@media screen and (min-width: 481px) {
+  /* ----Fonts---- */
+  h4 {
+    font-size: 1em;
+    min-width: 7rem;
+  }
+
+  h6 {
+    margin-left: 0.05rem;
+    font-size: 0.85em;
+  }
+}
+/* ---------------------------------large tablets & laptops styles--------------------------------- */
+@media screen and (min-width: 769px) {
+  #headerContainer {
+    max-width: 70%;
+  }
+  #main-container {
+    max-width: 70%;
+    /* display: flex; */
+    justify-content: space-between;
+  }
+
+  #repoContainer {
+    /* max-width: 40%; */
+  }
+  #contributorsContainer {
+    /* max-width: 40%; */
+  }
+  /* ----Fonts---- */
+  h1 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.3em;
+    min-width: 7rem;
+  }
+
+  h6 {
+    margin-left: 0.5rem;
+    font-size: 1em;
+  }
+}
+/*--------------------------------- Desktop styles--------------------------------- */
+@media screen and (min-width: 1280px) {
+  #main-container {
+    max-width: 70%;
+  }
+  #headerContainer {
+    max-width: 70%;
+  }
+  /* ----Fonts---- */
+  h1 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.3em;
+    min-width: 7rem;
+  }
+
+  h6 {
+    margin-left: 0.5rem;
+    font-size: 1em;
+  }
+}
