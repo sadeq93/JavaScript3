@@ -1,15 +1,20 @@
 'use strict';
-
-/*
-  Write here your JavaScript for HackYourRepo!
-*/
 import { Nav } from './DOM-sections/header-select-repo.js';
+const navigationBar = new Nav();
+navigationBar.append();
+navigationBar.setAttributes();
+navigationBar.manipulate();
+navigationBar.repoData.then(value => console.log(value));
 
-const header = new Nav(
-  document.createElement('div'),
-  document.createElement('h1'),
-  document.createElement('select'),
-);
-header.append();
-header.manipulate();
-header.style();
+//
+import { RepositoryInfo } from './DOM-sections/repository-Info.js';
+const RepoInfoSection = new RepositoryInfo();
+RepoInfoSection.append();
+RepoInfoSection.manipulate();
+RepoInfoSection.setAttributes();
+//
+import { contributors } from './DOM-sections/contributors-sectoin.js';
+const RepoContributorsSection = new contributors();
+RepoContributorsSection.append();
+// RepoContributorsSection.manipulate();
+RepoContributorsSection.setAttributes();
