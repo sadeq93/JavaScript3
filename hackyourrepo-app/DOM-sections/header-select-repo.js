@@ -1,12 +1,13 @@
+import { RepoData } from '../API-files/getHubRepo.js'
+const repositoriesData = new RepoData();
 export class Nav {
   constructor() {
     this.header = document.createElement('header');
     this.logo = document.createElement('h1');
     this.select = document.createElement('select');
     this.option = document.createElement('option');
-    this.repoData = this.fetchData(
-      'https://api.github.com/orgs/HackYourFuture/repos?per_page=100',
-    );
+    this.repoData = repositoriesData.repoData
+
   }
   append() {
     document.body.appendChild(this.header);
@@ -23,10 +24,16 @@ export class Nav {
     this.logo.textContent = 'HYF Repositories';
     this.option.textContent = 'Select Option';
   }
-  async fetchData(url) {
-    return await axios.get(url).then(response => {
-      return response.data;
+  insertData() {
+    this.repoData.then(data => {
+      data.forEach((repo, counter) => {
+        const repoOption = document.createElement('option');
+        this.select.appendChild(repoOption);
+        repoOption.textContent = repo.name;
+        repoOption.setAttribute('value', counter);
+      })
     });
 
   }
+
 }

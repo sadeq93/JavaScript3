@@ -1,3 +1,5 @@
+import { RepoData } from '../API-files/getHubRepo.js'
+const repositoriesData = new RepoData()
 export class RepositoryInfo {
   constructor() {
     this.main = document.createElement('main');
@@ -17,6 +19,10 @@ export class RepositoryInfo {
     this.descriptionResult = document.createElement('h6');
     this.forksResult = document.createElement('h6');
     this.updatedResult = document.createElement('h6');
+    // 
+    this.select = document.getElementById('select');
+    // 
+    this.repoData = repositoriesData.repoData
   }
   append() {
     document.body.appendChild(this.main);
@@ -43,12 +49,14 @@ export class RepositoryInfo {
     this.fork.textContent = 'Forks :';
     this.updated.textContent = 'Updated :';
   }
-  // injectData() {
-  //   this.repositoryResult.textContent =
-  //   this.descriptionResult.textContent =
-  //   this.forksResult.textContent =
-  //   this.updatedResult.textContent =
-  // }
+  insertData(e) {
+    this.repoData.then((data) => {
+      this.repositoryResult.textContent = data[e.target.value].name;
+      this.descriptionResult.textContent = data[e.target.value].description;
+      this.forksResult.textContent = data[e.target.value].forks;
+      this.updatedResult.textContent = data[e.target.value].updated_at;
+    })
+  }
   setAttributes() {
     this.RepositoryInfoSection.setAttribute('id', 'repoContainer');
     //
@@ -60,32 +68,3 @@ export class RepositoryInfo {
   }
 }
 
-// dataStor = fetchData();
-// response.data.forEach((repo, counter) => {
-//   const repoOption = document.createElement('option');
-//   this.select.appendChild(repoOption);
-//   repoOption.textContent = repo.name;
-//   repoOption.setAttribute('value', counter);
-
-// const repoData = response.data;
-// return (repoData = this.reposData);
-// console.log(repoData);
-//
-
-// document.querySelector(
-//   '#repoContainer',
-// ).children[0].children[1].textContent = response.data[0].name;
-
-// document.querySelector(
-//   '#repoContainer',
-// ).children[1].children[1].textContent = '2';
-
-// document.querySelector(
-//   '#repoContainer',
-// ).children[2].children[1].textContent = '3';
-
-// document.querySelector(
-//   '#repoContainer',
-// ).children[3].children[1].textContent = '4';
-
-// .catch(() => console.error(new Error('API has problem')));
