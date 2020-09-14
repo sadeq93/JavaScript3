@@ -21,11 +21,16 @@ RepoContributorsSection.append();
 RepoContributorsSection.manipulate();
 RepoContributorsSection.setAttributes();
 RepoContributorsSection.getUrls();
-navigationBar.select.addEventListener('change', RepoContributorsSection.insertData.bind(RepoContributorsSection));
+navigationBar.select.addEventListener('change', RepoContributorsSection.addAndRemove.bind(RepoContributorsSection));
+// RepoContributorsSection.addAndRemove();
 
 
 
 // 
 // import { contributorsData } from './API-files/getHubRepo.js';
 // const contData = new contributorsData()
-// contData.printUrl()
+
+
+import { RepoData } from './API-files/getHubRepo.js'
+const repositoriesData = new RepoData()
+repositoriesData.fetchData()

@@ -1,56 +1,71 @@
-const placeholderRepos = [
-  {
-    name: 'SampleRepo1',
-    description: 'This repository is meant to be a sample',
-    forks: 5,
-    updated: '2020-05-27 12:00:00',
-  },
-  {
-    name: 'AndAnotherOne',
-    description: 'Another sample repo! Can you believe it?',
-    forks: 9,
-    updated: '2020-05-27 12:00:00',
-  },
-  {
-    name: 'HYF-Is-The-Best',
-    description:
-      "This repository contains all things HackYourFuture. That's because HYF is amazing!!!!",
-    forks: 130,
-    updated: '2020-05-27 12:00:00',
-  },
-];
-const fetchData = () => {
-  fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-    .then((response) => response.json())
-    .then((data) => {
-      createOptions(data);
+class Pokemon {
+  constructor() {
+    this.select = document.getElementById('select')
+    this.result = document.getElementById('result')
+
+    this.data = this.fetchData('https://pokeapi.co/api/v2/pokemon?limit=151')
+    // this.Urls = [];
+  }
+
+  fetchData(url) {
+    return axios
+      .get(url)
+      .then(response => {
+        return response
+
+      });
+  }
+
+  createOptions() {
+    this.data.then(response => {
+      response.data.results.forEach((poki, counter) => {
+        const option = document.createElement('option')
+        // 
+        option.textContent = poki.name
+        // 
+        option.setAttribute('value', counter)
+        // 
+        this.select.appendChild(option)
+        // 
+        // console.log(poki)
+      })
+
+
     });
-  // .then((data) => {
-  //   console.log(data.sprites.back_default);
-  //   creatImg(data.sprites.back_shiny);
-  // });
-};
-fetchData();
 
-const createOptions = (jsonData) => {
-  // create select HTML tag
-  const select = document.createElement('select');
-  //appending
-  document.body.appendChild(select);
-  jsonData.forEach((element, counter) => {
-    // create option HTML tag
-    const option = document.createElement('option');
-    //appending
-    select.appendChild(option);
-    option.value = counter;
-    option.textContent = element;
-  });
-};
 
-// createOptions(placeholderRepos);
+  }
 
-const creatImg = (url) => {
-  const img = document.createElement('img');
-  img.src = url;
-  document.body.appendChild(img);
-};
+  insertImages(e) {
+
+    this.data.then(res => {
+
+      axios
+        .get(res.data.results[e.target.value].url)
+        .then(resForImg => {
+          const imgUrl = resForImg.data.sprites.other["official-artwork"].front_default;
+          const img = document.createElement('img')
+          img.src = imgUrl
+          img.setAttribute('width', '150px')
+          this.result.appendChild(img)
+
+        })
+
+    })
+  }
+  addAndRemove(e) {
+    if (this.result.firstChild === null) {
+      this.insertImages(e)
+    } else {
+      this.result.removeChild(this.result.firstChild)
+      this.insertImages(e)
+    }
+  }
+
+}
+const poki = new Pokemon()
+poki.fetchData()
+poki.createOptions()
+// poki.insertImages()
+
+poki.select.addEventListener('change', poki.addAndRemove.bind(poki))

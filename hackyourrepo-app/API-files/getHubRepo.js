@@ -7,7 +7,8 @@ export class RepoData {
   fetchData(url) {
     return axios.get(url).then(response => {
       return response.data;
-    });
+    }) 
+      ;
   }
 }
 const repositoriesData = new RepoData()

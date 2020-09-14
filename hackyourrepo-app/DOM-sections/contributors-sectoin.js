@@ -17,8 +17,6 @@ export class contributors {
     this.contributorsSection.setAttribute('id', 'contributorsContainer');
   }
   manipulate() {
-    // this.repoData.then(data => console.log(data))
-    // this.contUrl.then(data => console.log(data))
 
   }
 
@@ -29,6 +27,7 @@ export class contributors {
   }
 
   insertData(e) {
+    const contsContainer = document.createElement("div")
     this.contributorsUrl.then(url => {
       axios
         .get(url[e.target.value])
@@ -40,12 +39,14 @@ export class contributors {
             const contContributions = document.createElement("h2")
 
             // appending
-            this.contributorsSection.appendChild(contContainer)
+            this.contributorsSection.appendChild(contsContainer)
+            contsContainer.appendChild(contContainer)
             contContainer.appendChild(contImg)
             contContainer.appendChild(contLink)
             contContainer.appendChild(contContributions)
             // setAttribute
             contContainer.setAttribute('id', 'contContainer')
+            contsContainer.setAttribute('id', 'contsContainer')
             contImg.setAttribute('width', '50px')
             contLink.setAttribute('href', contributor.html_url)
             contLink.setAttribute('target', '_blank')
@@ -53,7 +54,6 @@ export class contributors {
             contLink.textContent = contributor.login
             contImg.src = (contributor.avatar_url)
             contContributions.textContent = contributor.contributions
-            console.log(contributor)
           });
 
         })
@@ -62,6 +62,16 @@ export class contributors {
 
   }
 
+
+  addAndRemove(e) {
+
+    if (this.contributorsSection.firstChild === null) {
+      this.insertData(e)
+    } else {
+      this.contributorsSection.removeChild(this.contributorsSection.firstChild)
+      this.insertData(e)
+    }
+  }
 }
 
 
