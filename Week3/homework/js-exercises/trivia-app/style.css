@@ -1,0 +1,30 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+#question{
+  background-color: #dddddd;
+  display: inline-block;
+  max-width: 80%;
+  min-width: 80%;
+  height: 2rem;
+  padding: 0.5rem;
+
+}
+#answer{
+  background-color: #fff;
+  max-width: 80%;
+  min-width: 80%;
+  height: 2rem;
+  padding: 0.5rem;
+}
+#question:hover{
+  background-color: #bebebe;
+}
+
+.hide{
+  display: none;
+}
+.display{
+  display: inline-block;
+}
