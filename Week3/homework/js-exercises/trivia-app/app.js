@@ -22,7 +22,7 @@ class Main {
     this.mainContainer = document.createElement('div')
     this.questions = [];
     this.answers = [];
-    // this.question = document.querySelectorAll('question')
+
   }
   async createHTMLTags() {
     const data = await this.data;
@@ -39,9 +39,14 @@ class Main {
       question.setAttribute('id', 'question')
       answer.setAttribute('id', 'answer')
       answer.setAttribute('class', 'hide')
+      // decoding
+
+      const questionDecoding = element.question.replace(/&quot;/gi, '"').replace(/&#039;/gi, "'").replace(/&deg;/gi, "°")
+      const answerDecoding = element.correct_answer.replace(/&quot;/gi, '"').replace(/&#039;/gi, "'").replace(/&deg;/gi, "°")
+
       // insert
-      question.textContent = element.question
-      answer.textContent = element.correct_answer
+      question.textContent = questionDecoding
+      answer.textContent = answerDecoding
       this.questions.push(question);
       this.answers.push(answer);
     });
@@ -67,54 +72,9 @@ async function main() {
   // createMainSection.questions.forEach(e => console.log(e))
   createMainSection.printToConsole()
 }
-main().then(() => console.log("done"))
-// createMainSection.question.addEventListener('click', showAnswer)
+window.addEventListener('load', main)
 
 
 
-// class FetchData {
-//   constructor(url) {
-//     this._url = url;
-//   }
-//   async getData() {
-//     try {
-//       const response = await axios.get(this._url);
-//       return response.data.results;
 
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-// }
-// const triviaData = new FetchData('https://opentdb.com/api.php?amount=5');
-// class Message {
-//   constructor() {
-//     this.data = triviaData.getData();
-//     this.body = document.body;
-//     this.message = document.getElementById('message')
-//   }
 
-//   // I want to change this
-//   async createHTMLTags() {
-//     const data = await this.data;
-//     data.forEach(element => {
-//       const message = document.createElement('h4')
-//       // appending
-//       this.body.appendChild(message)
-//       // setAttr
-//       message.setAttribute('id', 'message')
-//       // insert
-//       message.textContent = element.question
-//     });
-//     // to this :)
-//     // async createHTMLTags(){}
-//     // async appending(){}
-//     // async setAttr(){}
-//   }
-//   async printInConsole() {
-//     console.log(await this.message);
-//   }
-// }
-// const createMessage = new Message()
-// createMessage.createHTMLTags()
-// createMessage.printInConsole()
