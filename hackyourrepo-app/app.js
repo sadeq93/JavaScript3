@@ -22,13 +22,7 @@ async function main() {
   // repoContributorsSection.createPagesButtonsContainer();
 
   navigationBar.select.addEventListener('change', repoContributorsSection.runOnChange.bind(repoContributorsSection));
-  // navigationBar.select.addEventListener('change', repoContributorsSection.creatPageOne.bind(repoContributorsSection));
 
-  // 
-
-  // if (repoContributorsSection.buttonsContainer === null) {
-  //   console.log(`buttons container`)
-  //   repoContributorsSection.buttonsContainer.addEventListener('click', repoContributorsSection.runOnClick.bind(repoContributorsSection));
-  // }
 }
 main()
+

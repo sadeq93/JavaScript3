@@ -50,10 +50,11 @@ export class RepositoryInfo {
   }
   async insertData(e) {
     const data = await this.repoData;
-    this.repositoryResult.textContent = data[e.target.value].name;
-    this.descriptionResult.textContent = data[e.target.value].description;
-    this.forksResult.textContent = data[e.target.value].forks;
-    this.updatedResult.textContent = data[e.target.value].updated_at;
+    const value = e.target.value
+    this.repositoryResult.textContent = data[value].name;
+    this.descriptionResult.textContent = data[value].description;
+    this.forksResult.textContent = data[value].forks;
+    this.updatedResult.textContent = data[value].updated_at;
 
   }
   setAttributes() {
@@ -66,4 +67,5 @@ export class RepositoryInfo {
     //
   }
 }
+
 

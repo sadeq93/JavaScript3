@@ -57,6 +57,7 @@ body {
 #main-container {
   margin: 0 auto;
   margin-top: 0.3rem;
+  
 }
 #repoContainer {
   background: #fff;
@@ -65,19 +66,45 @@ body {
   flex-direction: column;
   padding: 1rem;
 }
-#contsContainer{
-    background: rgb(241, 241, 241);
-  height: 170px;
-}
-.dataBox {
-  padding: 7px;
-  display: flex;
-}
 #contributorsSection{
   display: flex;
   flex-direction: column;
-  background-color: #d3d3d3;
-  height: 470px;
+  margin-top: 1rem;
+  background-color: #ffffff;
+  height: 28rem;
+}
+#contsContainer{
+  background: rgb(241, 241, 241);
+  height: 170px;
+}
+#buttonsContainer{
+position: relative;
+top: 13rem;
+/* bottom: 1px; */
+margin: 0 auto;
+}
+.contBox {
+  background-color: #5e1f99;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem;
+  color: #fff;
+  margin: 0.3rem 0;
+  /* height:3rem; */
+}
+.button{
+  width: 40px;
+  height: 40px;
+  margin: 0.3rem;
+  background-color: #ffffff;
+  border: solid 2px #5e1f99c9;
+  color: #5e1f99c9;
+}
+
+a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4em;
 }
 #contributorsMessage{
   font-size: 3em;
@@ -85,19 +112,8 @@ body {
   display: flex;
   justify-content: center;
 }
-#buttonsContainer{
-  width: 50%;
-  height: 1rem;
-  background-color: #1f9970;
-  margin-top: 3rem;
 
-}
-.button{
-  width: 30px;
-  height: 30px;
-  background-color: #0d621b;
-  color: #fff;
-}
+
 #contributorsContainer {
   margin-top: 0.3rem;
   background: #fff;
@@ -147,6 +163,10 @@ body {
     min-width: 49.5%;
     margin: 0 auto;
   }
+  #contributorsSection{
+  max-width: 80%;
+  margin: 1rem auto;
+  }
   /* ----Fonts---- */
   h1 {
     font-size: 1.5em;
@@ -168,6 +188,9 @@ body {
   }
   #headerContainer {
     max-width: 80%;
+  }
+  #contributorsSection{
+  max-width: 80%;
   }
   /* ----Fonts---- */
   h1 {
