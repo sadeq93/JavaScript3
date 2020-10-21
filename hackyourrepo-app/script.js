@@ -3,7 +3,7 @@ import { Nav } from './DOM-sections/header-select-repo.js';
 const navigationBar = new Nav();
 navigationBar.append();
 navigationBar.setAttributes();
-navigationBar.manipulate();
+navigationBar.insertText();
 navigationBar.insertData();
 
 //

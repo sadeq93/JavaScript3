@@ -20,7 +20,7 @@ export class Nav {
     this.select.setAttribute('id', 'select');
     this.select.setAttribute('id', 'select');
   }
-  manipulate() {
+  insertText() {
     this.logo.textContent = 'HYF Repositories';
     this.option.textContent = 'Select Option';
   }

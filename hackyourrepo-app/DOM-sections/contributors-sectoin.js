@@ -1,25 +1,21 @@
 import { RepoData } from '../API-files/getHubRepo.js'
-const repositoriesData = new RepoData()
 // 
 export class contributors {
   constructor() {
     this.main = document.querySelector('main');
     this.contributorsSection = document.createElement('section');
+    this.main.appendChild(this.contributorsSection)
     // 
-    this.repoData = repositoriesData.repoData
+    this.repoData = new RepoData().repoData
     this.contributorsUrl = this.getUrls()
 
   }
-  append() {
-    this.main.appendChild(this.contributorsSection);
-  }
+  // append() {
+  //   this.main.appendChild(this.contributorsSection);
+  // }
   setAttributes() {
     this.contributorsSection.setAttribute('id', 'contributorsContainer');
   }
-  manipulate() {
-
-  }
-
   getUrls() {
     return this.repoData.then(data => {
       return data.map(repo => repo.contributors_url);

@@ -11,15 +11,18 @@ const getAnonName = (firstName) => {
           resolve(fullName);
         }
         // short code (short if statement) as a suggestion.
-        // !firstName
+        // (!firstName)
         //   ? reject(new Error("You didn't pass in a first name!"))
         //   : resolve(`${firstName} Doe`);
       }, 500);
     })
+  );
+
+};
+getAnonName('john')
+
+
       // get the data after 2 seconds if it is there.
       .then((name) => console.log(name))
       //if it is not send Error message
       .catch((error) => console.error(error))
-  );
-};
-getAnonName('john');
